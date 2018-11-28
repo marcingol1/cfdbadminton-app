@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
 import Client, { AUTH_TYPE } from 'aws-appsync';
 import { ApolloProvider } from 'react-apollo';
 import { Rehydrated } from 'aws-appsync-react';
+
 import AppSync from './AppSync';
+import ListPlayers from './ListPlayers';
 
 const client = new Client({
   url: AppSync.aws_appsync_graphqlEndpoint,
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Rehydrated>
+        <ListPlayers />
         <p>You clicked {count} times!</p>
         <button onClick={() => setCount(count + 1)}>Click me!</button>
       </Rehydrated>
