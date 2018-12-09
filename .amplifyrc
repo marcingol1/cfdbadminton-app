@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "cfdbadmintonweb-20181208232102-authRole",
+            "UnauthRoleArn": "arn:aws:iam::268828591568:role/cfdbadmintonweb-20181208232102-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::268828591568:role/cfdbadmintonweb-20181208232102-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "cfdbadmintonweb-20181208232102-deployment",
+            "UnauthRoleName": "cfdbadmintonweb-20181208232102-unauthRole",
+            "StackName": "cfdbadmintonweb-20181208232102",
+            "StackId": "arn:aws:cloudformation:eu-central-1:268828591568:stack/cfdbadmintonweb-20181208232102/8c97ece0-fb37-11e8-a342-02d441bc2b52"
+        }
+    }
+}
