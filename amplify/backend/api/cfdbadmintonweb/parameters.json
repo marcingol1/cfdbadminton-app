@@ -1,0 +1,9 @@
+{
+    "AppSyncApiName": "cfdbadmintonweb",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognitoecba4ef5",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

@@ -28,5 +28,20 @@
 			},
 			"lastPushDirHash": "T5NJgxX8grI2lWkYQP+sq+HMwr0="
 		}
+	},
+	"auth": {
+		"cognitoecba4ef5": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {
+		"cfdbadmintonweb": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS"
+			}
+		}
 	}
 }
