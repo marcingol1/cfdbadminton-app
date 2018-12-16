@@ -13,7 +13,8 @@
     "noImplicitAny": false,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "types": ["react", "amplify", "jest"]
   },
   "include": ["src"]
 }
