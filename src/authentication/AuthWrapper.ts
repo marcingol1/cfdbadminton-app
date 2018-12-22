@@ -4,13 +4,6 @@ import aws_exports from './../aws-exports.js';
 
 Amplify.configure(aws_exports);
 
-Amplify.configure({
-  API: {
-    graphql_endpoint:
-      'https://nfgxtncwivenfdw3m66rfxleay.appsync-api.eu-central-1.amazonaws.com/graphql',
-  },
-});
-
 export const AuthWrapper = ({ children }) => {
   return children;
 };
