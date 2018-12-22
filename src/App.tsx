@@ -1,9 +1,5 @@
-import Amplify from 'aws-amplify';
 import React, { Fragment, useState } from 'react';
-import aws_exports from './aws-exports.js';
-import { withAuthenticator } from 'aws-amplify-react';
-
-Amplify.configure(aws_exports);
+import TestList from './server-list/test-list';
 
 const App = () => {
   const [count, setCount] = useState(120);
@@ -12,8 +8,9 @@ const App = () => {
     <Fragment>
       <p>You clicked {count} times!</p>
       <button onClick={() => setCount(count + 1)}>Click me!</button>
+      <TestList />
     </Fragment>
   );
 };
 
-export default withAuthenticator(App, true);
+export default App;
