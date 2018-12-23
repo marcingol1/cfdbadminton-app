@@ -10,6 +10,38 @@ type PrivateNote {
   content: String!
 }
 
+type Player {
+  id: ID!
+  nickname: String!
+  dateCreated: AWSDateTime!
+  online: Boolean
+  mail: AWSEmail
+}
+
+type Server {
+  id: ID!
+  title: String!
+  playersOnline: [Player]
+  games: [Game]
+}
+
+type Game {
+  id: ID!
+  title: String!
+  teamA: [Player]
+  teamB: [Player]
+  score: String!
+  gameType: GameType
+}
+
+type GameType {
+  id: ID!
+  title: String!
+  type: Int!
+  minPlayers: Int
+  maxPlayers: Int
+}
+
 enum ModelSortDirection {
   ASC
   DESC
@@ -90,6 +122,14 @@ type Query {
   listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection
   getPrivateNote(id: ID!): PrivateNote
   listPrivateNotes(filter: ModelPrivateNoteFilterInput, limit: Int, nextToken: String): ModelPrivateNoteConnection
+  getPlayer(id: ID!): Player
+  listPlayers(filter: ModelPlayerFilterInput, limit: Int, nextToken: String): ModelPlayerConnection
+  getServer(id: ID!): Server
+  listServers(filter: ModelServerFilterInput, limit: Int, nextToken: String): ModelServerConnection
+  getGame(id: ID!): Game
+  listGames(filter: ModelGameFilterInput, limit: Int, nextToken: String): ModelGameConnection
+  getGameType(id: ID!): GameType
+  listGameTypes(filter: ModelGameTypeFilterInput, limit: Int, nextToken: String): ModelGameTypeConnection
 }
 
 input CreateTaskInput {
@@ -117,6 +157,18 @@ type Mutation {
   createPrivateNote(input: CreatePrivateNoteInput!): PrivateNote
   updatePrivateNote(input: UpdatePrivateNoteInput!): PrivateNote
   deletePrivateNote(input: DeletePrivateNoteInput!): PrivateNote
+  createPlayer(input: CreatePlayerInput!): Player
+  updatePlayer(input: UpdatePlayerInput!): Player
+  deletePlayer(input: DeletePlayerInput!): Player
+  createServer(input: CreateServerInput!): Server
+  updateServer(input: UpdateServerInput!): Server
+  deleteServer(input: DeleteServerInput!): Server
+  createGame(input: CreateGameInput!): Game
+  updateGame(input: UpdateGameInput!): Game
+  deleteGame(input: DeleteGameInput!): Game
+  createGameType(input: CreateGameTypeInput!): GameType
+  updateGameType(input: UpdateGameTypeInput!): GameType
+  deleteGameType(input: DeleteGameTypeInput!): GameType
 }
 
 type Subscription {
@@ -126,6 +178,18 @@ type Subscription {
   onCreatePrivateNote: PrivateNote @aws_subscribe(mutations: ["createPrivateNote"])
   onUpdatePrivateNote: PrivateNote @aws_subscribe(mutations: ["updatePrivateNote"])
   onDeletePrivateNote: PrivateNote @aws_subscribe(mutations: ["deletePrivateNote"])
+  onCreatePlayer: Player @aws_subscribe(mutations: ["createPlayer"])
+  onUpdatePlayer: Player @aws_subscribe(mutations: ["updatePlayer"])
+  onDeletePlayer: Player @aws_subscribe(mutations: ["deletePlayer"])
+  onCreateServer: Server @aws_subscribe(mutations: ["createServer"])
+  onUpdateServer: Server @aws_subscribe(mutations: ["updateServer"])
+  onDeleteServer: Server @aws_subscribe(mutations: ["deleteServer"])
+  onCreateGame: Game @aws_subscribe(mutations: ["createGame"])
+  onUpdateGame: Game @aws_subscribe(mutations: ["updateGame"])
+  onDeleteGame: Game @aws_subscribe(mutations: ["deleteGame"])
+  onCreateGameType: GameType @aws_subscribe(mutations: ["createGameType"])
+  onUpdateGameType: GameType @aws_subscribe(mutations: ["updateGameType"])
+  onDeleteGameType: GameType @aws_subscribe(mutations: ["deleteGameType"])
 }
 
 type ModelPrivateNoteConnection {
@@ -152,5 +216,134 @@ input UpdatePrivateNoteInput {
 }
 
 input DeletePrivateNoteInput {
+  id: ID
+}
+
+type ModelPlayerConnection {
+  items: [Player]
+  nextToken: String
+}
+
+input ModelPlayerFilterInput {
+  id: ModelIDFilterInput
+  nickname: ModelStringFilterInput
+  dateCreated: ModelStringFilterInput
+  online: ModelBooleanFilterInput
+  mail: ModelStringFilterInput
+  and: [ModelPlayerFilterInput]
+  or: [ModelPlayerFilterInput]
+  not: ModelPlayerFilterInput
+}
+
+input CreatePlayerInput {
+  id: ID
+  nickname: String!
+  dateCreated: AWSDateTime!
+  online: Boolean
+  mail: AWSEmail
+}
+
+input UpdatePlayerInput {
+  id: ID!
+  nickname: String
+  dateCreated: AWSDateTime
+  online: Boolean
+  mail: AWSEmail
+}
+
+input DeletePlayerInput {
+  id: ID
+}
+
+type ModelServerConnection {
+  items: [Server]
+  nextToken: String
+}
+
+input ModelServerFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  and: [ModelServerFilterInput]
+  or: [ModelServerFilterInput]
+  not: ModelServerFilterInput
+}
+
+input CreateServerInput {
+  id: ID
+  title: String!
+}
+
+input UpdateServerInput {
+  id: ID!
+  title: String
+}
+
+input DeleteServerInput {
+  id: ID
+}
+
+type ModelGameConnection {
+  items: [Game]
+  nextToken: String
+}
+
+input ModelGameFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  score: ModelStringFilterInput
+  and: [ModelGameFilterInput]
+  or: [ModelGameFilterInput]
+  not: ModelGameFilterInput
+}
+
+input CreateGameInput {
+  id: ID
+  title: String!
+  score: String!
+}
+
+input UpdateGameInput {
+  id: ID!
+  title: String
+  score: String
+}
+
+input DeleteGameInput {
+  id: ID
+}
+
+type ModelGameTypeConnection {
+  items: [GameType]
+  nextToken: String
+}
+
+input ModelGameTypeFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  type: ModelIntFilterInput
+  minPlayers: ModelIntFilterInput
+  maxPlayers: ModelIntFilterInput
+  and: [ModelGameTypeFilterInput]
+  or: [ModelGameTypeFilterInput]
+  not: ModelGameTypeFilterInput
+}
+
+input CreateGameTypeInput {
+  id: ID
+  title: String!
+  type: Int!
+  minPlayers: Int
+  maxPlayers: Int
+}
+
+input UpdateGameTypeInput {
+  id: ID!
+  title: String
+  type: Int
+  minPlayers: Int
+  maxPlayers: Int
+}
+
+input DeleteGameTypeInput {
   id: ID
 }

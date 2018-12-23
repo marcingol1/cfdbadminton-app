@@ -147,10 +147,10 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://cfdbadmintonweb-20181208232102-deployment/amplify-appsync-files/schema.graphql.1544362211732",
+					"schemaGraphql": "s3://cfdbadmintonweb-20181208232102-deployment/amplify-appsync-files/schema.graphql.1545557971688",
 					"ResolverBucket": "cfdbadmintonweb-20181208232102-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1544362211732"
+					"DeploymentTimestamp": "1545557971688"
 				}
 			}
 		}
