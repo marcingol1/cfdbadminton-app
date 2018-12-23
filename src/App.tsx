@@ -1,21 +1,22 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 import PrivateNotesList from './private-notes/private-notes-list';
 import { fetchPrivateNotes } from './private-notes/services';
-
+import CreateServer from './game-servers/containers/create-server';
+import ServerList from './game-servers/containers/server-list';
+import HomePage from './home-page/containers/home-page';
+import HeaderNav from './navigation/container/header-nav';
 const App = () => {
-  const [count, setCount] = useState(120);
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    fetchPrivateNotes(setList);
-  });
-
   return (
-    <Fragment>
-      <p>You clicked {count} times!</p>
-      <button onClick={() => setCount(count + 1)}>Click me!</button>
-      <PrivateNotesList list={list} />
-    </Fragment>
+    <Router>
+      <Fragment>
+        <HeaderNav />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/server-create" component={CreateServer} />
+        <Route path="/servers" component={ServerList} />
+      </Fragment>
+    </Router>
   );
 };
 
