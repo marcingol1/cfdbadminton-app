@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 import { Authenticator, Greetings } from 'aws-amplify-react';
+import { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports.js';
+import { Button } from '@material-ui/core';
 
-/* class AuthWrapper extends Component {
-  _validAuthState: string[];
-
-  constructor(props) {
-    super(props);
-    this._validAuthState = ['signedIn'];
-  }
-  showComponent = theme => {
-    console.log(this, theme);
-    const { children } = this.props;
-    return <Authenticator>{children}</Authenticator>;
-  };
-} */
+const initiateLogout = () => {
+  Auth.signOut()
+    .then(data => {
+      window.location.reload();
+    })
+    .catch(err => console.log(err));
+};
 
 const TopBarComponent = props => {
-  return <div>hello world! </div>;
+  if (props.authState !== 'signedIn') {
+    return null;
+  }
+  return <Button onClick={initiateLogout}>Log out!</Button>;
+};
+
+const ChildrenWrapper = props => {
+  if (props.authState !== 'signedIn') {
+    return null;
+  }
+  return props.children;
 };
 
 class AuthWrapper extends Component {
@@ -26,7 +32,7 @@ class AuthWrapper extends Component {
     return (
       <Authenticator hide={[Greetings]} amplifyConfig={aws_exports}>
         <TopBarComponent override={Greetings} />
-        {children}
+        <ChildrenWrapper>{children}</ChildrenWrapper>
       </Authenticator>
     );
   }

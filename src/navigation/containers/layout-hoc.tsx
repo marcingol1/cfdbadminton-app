@@ -14,10 +14,10 @@ const LayoutWrapper = ({ classes, children }) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           {menu}
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={9}>
           {children}
         </Grid>
       </Grid>
