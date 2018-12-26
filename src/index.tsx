@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import AuthWrapper from './authentication/AuthWrapper';
 
 ReactDOM.render(
-  <AuthWrapper>
-    <App />
-  </AuthWrapper>,
+  <Fragment>
+    <CssBaseline />
+    <AuthWrapper>
+      <App />
+    </AuthWrapper>
+  </Fragment>,
   document.getElementById('root'),
 );
 
