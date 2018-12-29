@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Authenticator, Greetings } from 'aws-amplify-react';
 import { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports.js';
-import { Button } from '@material-ui/core';
+import { Button, AppBar } from '@material-ui/core';
 
 const initiateLogout = () => {
   Auth.signOut()
@@ -16,7 +16,11 @@ const TopBarComponent = props => {
   if (props.authState !== 'signedIn') {
     return null;
   }
-  return <Button onClick={initiateLogout}>Log out!</Button>;
+  return (
+    <AppBar>
+      <Button onClick={initiateLogout}>Log out!</Button>
+    </AppBar>
+  );
 };
 
 const ChildrenWrapper = props => {
