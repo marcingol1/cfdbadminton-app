@@ -1,60 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import classNames from 'classnames';
+
 import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  withTheme,
   AppBar,
+  withStyles,
+  Toolbar,
+  IconButton,
+  MenuItem,
+  Typography,
 } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import AddIcon from '@material-ui/icons/Add';
-import ScoreIcon from '@material-ui/icons/Score';
+import MenuIcon from '@material-ui/icons/Menu';
 
-interface Route {
-  link: string;
-  exact?: boolean;
-  text: string;
-  icon: JSX.Element;
-}
+import MenuLinksList from '../components/menu-links-list';
 
-const routing: Route[] = [
-  {
-    link: '/',
-    exact: true,
-    text: 'Home',
-    icon: <HomeIcon />,
+const drawerWidth = 240;
+const styles = theme => ({
+  root: {
+    display: 'flex',
   },
-  {
-    link: '/server-add',
-    text: 'Create new server',
-    icon: <AddIcon />,
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
-  {
-    link: '/servers',
-    text: 'Servers list',
-    icon: <ScoreIcon />,
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
-];
+});
 
-const HeaderNav = props => {
+const HeaderNav = ({ classes }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <AppBar position="static">
-      <nav>
-        <List>
-          {routing.map((route: Route, index) => (
-            <Link to={route.link} key={route.link + index}>
-              <ListItem button>
-                <ListItemIcon>{route.icon}</ListItemIcon>
-                <ListItemText primary={route.text} />
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-      </nav>
-    </AppBar>
+    <div className={classes.root}>
+      <AppBar
+        position="fixed"
+        className={classNames(classes.appBar, {
+          [classes.appBarShift]: drawerOpen,
+        })}
+      >
+        <Toolbar disableGutters={!drawerOpen}>
+          <IconButton
+            color="inherit"
+            aria-label="Open drawer"
+            onClick={() => {
+              console.log('trigger', drawerOpen);
+              setDrawerOpen(!drawerOpen);
+            }}
+            className={classNames(
+              classes.menuButton,
+              drawerOpen && classes.hide,
+            )}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" noWrap>
+            Persistent drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      {drawerOpen && <MenuLinksList />}
+    </div>
   );
 };
 
-export default withTheme()(HeaderNav);
+export default withStyles(styles, { withTheme: true })(HeaderNav);

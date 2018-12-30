@@ -11,6 +11,7 @@
     "@types/react-dom": "16.0.9",
     "aws-amplify": "^1.0.0",
     "aws-amplify-react": "^2.1.7",
+    "classnames": "^2.2.6",
     "final-form": "^4.11.0",
     "graphql-tag": "^2.10.0",
     "jss": "^9.8.7",
