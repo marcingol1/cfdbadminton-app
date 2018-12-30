@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { Auth } from 'aws-amplify';
 
 import {
   AppBar,
@@ -8,6 +9,7 @@ import {
   IconButton,
   MenuItem,
   Typography,
+  Button,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -33,6 +35,26 @@ const styles = theme => ({
     }),
   },
 });
+
+const initiateLogout = () => {
+  Auth.signOut()
+    .then(data => {
+      window.location.reload();
+    })
+    .catch(err => console.log(err));
+};
+
+const isLogged = () => {
+  return Auth.currentAuthenticatedUser;
+};
+
+function LogoutButton(props) {
+  console.log(isLogged());
+  if (!isLogged()) {
+    return null;
+  }
+  return <Button onClick={initiateLogout}>Log out!</Button>;
+}
 
 const HeaderNav = ({ classes }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -60,8 +82,9 @@ const HeaderNav = ({ classes }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" noWrap>
-            Persistent drawer
+            Badminton
           </Typography>
+          <LogoutButton />
         </Toolbar>
       </AppBar>
       {drawerOpen && <MenuLinksList />}

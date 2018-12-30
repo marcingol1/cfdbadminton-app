@@ -1,23 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Authenticator, Greetings } from 'aws-amplify-react';
-import { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports.js';
-import { Button, AppBar } from '@material-ui/core';
-
-const initiateLogout = () => {
-  Auth.signOut()
-    .then(data => {
-      window.location.reload();
-    })
-    .catch(err => console.log(err));
-};
-
-const TopBarComponent = props => {
-  if (props.authState !== 'signedIn') {
-    return null;
-  }
-  return <Button onClick={initiateLogout}>Log out!</Button>;
-};
 
 const ChildrenWrapper = props => {
   if (props.authState !== 'signedIn') {
@@ -26,12 +9,17 @@ const ChildrenWrapper = props => {
   return props.children;
 };
 
+const ContextProvider = React.createContext('false');
+
+const Dummy = props => {
+  return <Fragment />;
+};
 class AuthWrapper extends Component {
   render() {
     const { children } = this.props;
     return (
       <Authenticator hide={[Greetings]} amplifyConfig={aws_exports}>
-        <TopBarComponent override={Greetings} />
+        <Dummy override={Greetings} />
         <ChildrenWrapper>{children}</ChildrenWrapper>
       </Authenticator>
     );
