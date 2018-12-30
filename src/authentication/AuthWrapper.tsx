@@ -16,11 +16,7 @@ const TopBarComponent = props => {
   if (props.authState !== 'signedIn') {
     return null;
   }
-  return (
-    <AppBar>
-      <Button onClick={initiateLogout}>Log out!</Button>
-    </AppBar>
-  );
+  return <Button onClick={initiateLogout}>Log out!</Button>;
 };
 
 const ChildrenWrapper = props => {
