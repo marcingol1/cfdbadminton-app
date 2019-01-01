@@ -34,6 +34,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  buttonLogout: {
+    marginLeft: 'auto',
+  },
 });
 
 const initiateLogout = () => {
@@ -48,16 +51,24 @@ const isLogged = () => {
   return Auth.currentAuthenticatedUser;
 };
 
-function LogoutButton(props) {
-  console.log(isLogged());
+function LogoutButton({ classes }) {
   if (!isLogged()) {
     return null;
   }
-  return <Button onClick={initiateLogout}>Log out!</Button>;
+  return (
+    <Button
+      className={classNames(classes.buttonLogout)}
+      variant="contained"
+      color="secondary"
+      onClick={initiateLogout}
+    >
+      Logout
+    </Button>
+  );
 }
 
 const HeaderNav = ({ classes }) => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   return (
     <div className={classes.root}>
       <AppBar
@@ -84,7 +95,7 @@ const HeaderNav = ({ classes }) => {
           <Typography variant="h6" color="inherit" noWrap>
             Badminton
           </Typography>
-          <LogoutButton />
+          <LogoutButton classes={classes} />
         </Toolbar>
       </AppBar>
       {drawerOpen && <MenuLinksList />}
