@@ -18,7 +18,10 @@ import MenuLinksList from '../components/menu-links-list';
 const drawerWidth = 240;
 const styles = theme => ({
   root: {
-    display: 'flex',
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -28,14 +31,10 @@ const styles = theme => ({
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  },
-  buttonLogout: {
-    marginLeft: 'auto',
   },
 });
 
@@ -82,7 +81,6 @@ const HeaderNav = ({ classes }) => {
             color="inherit"
             aria-label="Open drawer"
             onClick={() => {
-              console.log('trigger', drawerOpen);
               setDrawerOpen(!drawerOpen);
             }}
             className={classNames(
@@ -92,7 +90,12 @@ const HeaderNav = ({ classes }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography
+            variant="h6"
+            className={classes.grow}
+            color="inherit"
+            noWrap
+          >
             Badminton
           </Typography>
           <LogoutButton classes={classes} />
