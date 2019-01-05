@@ -5,12 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-
+    isLoading: false,
+    server: {
+      list: [
+        { title: 'test' },
+        { title: 'test' },
+        { title: 'test' },
+        { title: 'test' },
+      ],
+    },
   },
-  mutations: {
-
-  },
-  actions: {
-
-  },
+  mutations: {},
+  actions: {},
 });
