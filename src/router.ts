@@ -23,7 +23,7 @@ export default new Router({
     {
       path: '/server/list',
       name: 'server-list',
-      component: () => import('./views/Server/List.vue'),
+      component: () => import('./views/Server/Main.vue'),
     },
   ],
 });
