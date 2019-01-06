@@ -1,6 +1,5 @@
 <template>
   <div class="list">
-    <button>Add new server</button>
     <ServerForm title="Create new server here"/>
     <ServerList/>
   </div>
