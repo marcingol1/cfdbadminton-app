@@ -1,8 +1,8 @@
 interface Player {
   id: string;
   nickname: string;
-  dateCreated: Date;
-  onlnie: boolean;
+  dateCreated: string;
+  online: boolean;
   mail: string;
 }
 
@@ -20,7 +20,7 @@ interface Game {
   teamA: Player[];
   teamB: Player[];
   score: string;
-  gameType: GameType[];
+  gameType: GameType;
 }
 
 interface Server {
