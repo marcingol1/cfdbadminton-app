@@ -1,11 +1,13 @@
 <template>
   <div class="server-list">
-    <ul>
-      <li v-for="(item, index) in items" :key="`${item.title} + ${index}`">
-        {{ item.title }}
-        <span @click="removeServer(index)">X</span>
-      </li>
-    </ul>
+    <transition-group name="list-complete" tag="p">
+      <span
+        v-for="(item, index) in items"
+        v-bind:key="item.title"
+        class="list-complete-item"
+        @click="removeServer(index)"
+      >{{ item.title }}</span>
+    </transition-group>
   </div>
 </template>
 
@@ -33,13 +35,18 @@ export default class ServerList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.server-list {
-  display: flex;
-  justify-content: center;
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>
 
