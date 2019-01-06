@@ -1,13 +1,17 @@
 <template>
   <div class="server-list">
     <ul>
-      <li v-for="(item, index) in items" :key="`${item.title} + ${index}`">{{ item.title }}</li>
+      <li v-for="(item, index) in items" :key="`${item.title} + ${index}`">
+        {{ item.title }}
+        <span @click="removeServer(index)">X</span>
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { mapMutations } from "vuex";
 
 interface ListItem {
   title: string;
@@ -18,6 +22,9 @@ interface ListItem {
     items() {
       return this.$store.state.server.list;
     }
+  },
+  methods: {
+    ...mapMutations(["removeServer"])
   }
 })
 export default class ServerList extends Vue {

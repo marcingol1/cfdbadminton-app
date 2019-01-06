@@ -15,6 +15,12 @@ export default new Vuex.Store({
     addServer(state) {
       state.server.list.push(generateTestServer());
     },
+    removeServer(state, index) {
+      state.server.list = [
+        ...state.server.list.slice(0, index),
+        ...state.server.list.slice(index + 1),
+      ];
+    },
   },
   actions: {},
 });
