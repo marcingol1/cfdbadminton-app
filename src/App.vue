@@ -47,13 +47,11 @@ export default Vue.extend({
   methods: {
     async logout() {
       const signedOut = await Auth.signOut();
-      console.log(signedOut, this.$Amplify);
       this.signedIn = !this.signedIn;
     },
     async signIn() {
       console.log("loggin in as: ", this.username, this.password);
       const signIn = await Auth.signIn(this.username, this.password);
-      console.log("signed in: ", signIn);
       this.signedIn = true;
     }
   }
