@@ -1,13 +1,23 @@
 <template>
   <div id="app">
-    <amplify-authenticator></amplify-authenticator>
-    <button v-if="signedIn" @click="logout">Log out</button>
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/server/list">Servers</router-link>
+    <div id="login-form" v-if="!signedIn">
+      <form>
+        <label for="username-input">Username</label>
+        <input id="username-input" type="text" v-model="username">
+        <label for="password-input">Password</label>
+        <input id="password-input" type="password" v-model="password">
+        <button @click="signIn">Log in</button>
+      </form>
     </div>
-    <router-view/>
+    <div v-if="signedIn" class="logged-in">
+      <button @click="logout">Log out</button>
+      <div id="nav">
+        <router-link to="/">Home</router-link>|
+        <router-link to="/about">About</router-link>|
+        <router-link to="/server/list">Servers</router-link>
+      </div>
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -19,11 +29,12 @@ import { Auth } from "aws-amplify";
 import { AmplifyEventBus } from "aws-amplify-vue";
 
 export default Vue.extend({
-  components: {
-    ...components
-  },
   data() {
-    return { signedIn: false };
+    return {
+      signedIn: false,
+      username: "",
+      password: ""
+    };
   },
   async beforeCreate() {
     try {
@@ -35,15 +46,15 @@ export default Vue.extend({
   },
   methods: {
     async logout() {
-      Auth.signOut()
-        .then(test => {
-          console.log(test, this.$data, "test");
-          this.signedIn = true;
-        })
-        .catch(() => {
-          this.signedIn = false;
-        });
+      const signedOut = await Auth.signOut();
+      console.log(signedOut, this.$Amplify);
       this.signedIn = !this.signedIn;
+    },
+    async signIn() {
+      console.log("loggin in as: ", this.username, this.password);
+      const signIn = await Auth.signIn(this.username, this.password);
+      console.log("signed in: ", signIn);
+      this.signedIn = true;
     }
   }
 });
