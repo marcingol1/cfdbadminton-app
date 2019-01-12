@@ -1,4 +1,4 @@
 {
-    "useProfile": true,
-    "profileName": "default"
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/marcin.gol/.amplify/awscloudformation/uwSL9uGteS"
 }

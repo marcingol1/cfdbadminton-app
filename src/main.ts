@@ -8,6 +8,8 @@ import amplify from './amplify';
 
 Vue.config.productionTip = false;
 
+Vue.use(amplify.AmplifyPlugin, amplify.AmplifyModules);
+
 new Vue({
   router,
   store,

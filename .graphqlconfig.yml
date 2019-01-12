@@ -4,13 +4,14 @@ projects:
     includes:
       - src/graphql/**/*.ts
     excludes:
-      - amplify/**
+      - ./amplify/**
     extensions:
       amplify:
-        codeGenTarget: typescript
-        generatedFileName: src/API.ts
-        docsFilePath: src/graphql
         graphQLApiId: 2oax566najelpm463zldhra4r4
+        codeGenTarget: typescript
+        generatedFileName: src/badminton-api.ts
+        docsFilePath: src/graphql
+        region: eu-central-1
       endpoints:
         prod: >-
           https://nfgxtncwivenfdw3m66rfxleay.appsync-api.eu-central-1.amazonaws.com/graphql

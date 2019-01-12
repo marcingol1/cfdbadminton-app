@@ -6,12 +6,12 @@
         "javascript": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
     },
     "javascript": {
-        "framework": "react",
+        "framework": "vue",
         "config": {
             "SourceDir": "src",
-            "DistributionDir": "build",
+            "DistributionDir": "dist",
             "BuildCommand": "npm run-script build",
-            "StartCommand": "npm run-script start"
+            "StartCommand": "npm run-script serve"
         }
     },
     "providers": {

@@ -2,7 +2,7 @@
 
 describe('My First Test', () => {
   it('Visits the app root url', () => {
-    cy.visit('/')
-    cy.contains('h1', 'Welcome to Your Vue.js + TypeScript App')
-  })
-})
+    cy.visit('#/server/list');
+    cy.contains('h1', 'Create new server here');
+  });
+});

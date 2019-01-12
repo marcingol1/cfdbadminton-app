@@ -10,6 +10,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/graphql": "^14.0.4",
+    "@types/node": "^10.12.18",
     "aws-amplify": "^1.1.18",
     "aws-amplify-vue": "^0.2.5",
     "moment": "^2.23.0",
