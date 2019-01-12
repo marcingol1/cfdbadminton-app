@@ -1,23 +1,40 @@
 <template>
   <div id="app">
-    <div id="login-form" v-if="!signedIn">
-      <form>
-        <label for="username-input">Username</label>
-        <input id="username-input" type="text" v-model="username">
-        <label for="password-input">Password</label>
-        <input id="password-input" type="password" v-model="password">
-        <button @click="signIn">Log in</button>
-      </form>
-    </div>
-    <div v-if="signedIn" class="logged-in">
-      <button @click="logout">Log out</button>
-      <div id="nav">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/about">About</router-link>|
-        <router-link to="/server/list">Servers</router-link>
+    <v-app id="vuetify-app">
+      <v-form v-model="formValid">
+        <v-container v-if="!signedIn">
+          <v-layout justify-center>
+            <v-flex xs12 md4>
+              <v-text-field
+                label="Username"
+                name="username"
+                v-model="username"
+                v-validate="'required|min:6'"
+                :error-messages="errors.collect('username')"
+              ></v-text-field>
+              <v-text-field
+                label="Password"
+                type="password"
+                name="password"
+                v-model="password"
+                v-validate="'required'"
+                :error-messages="errors.collect('password')"
+              ></v-text-field>
+              <v-btn color="primary" type="submit" @click="signIn">Log in</v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-form>
+      <div v-if="signedIn" class="logged-in">
+        <button @click="logout">Log out</button>
+        <div id="nav">
+          <router-link to="/">Home</router-link>|
+          <router-link to="/about">About</router-link>|
+          <router-link to="/server/list">Servers</router-link>
+        </div>
+        <router-view/>
       </div>
-      <router-view/>
-    </div>
+    </v-app>
   </div>
 </template>
 
@@ -32,6 +49,7 @@ export default Vue.extend({
   data() {
     return {
       signedIn: false,
+      formValid: true,
       username: "",
       password: ""
     };

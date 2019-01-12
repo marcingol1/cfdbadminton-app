@@ -16,6 +16,7 @@
     "aws-amplify-vue": "^0.2.5",
     "moment": "^2.23.0",
     "register-service-worker": "^1.5.2",
+    "vee-validate": "^2.1.5",
     "vue": "^2.5.21",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",

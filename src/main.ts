@@ -5,10 +5,12 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import amplify from './amplify';
+import VeeValidate from 'vee-validate';
 
 Vue.config.productionTip = false;
 
 Vue.use(amplify.AmplifyPlugin, amplify.AmplifyModules);
+Vue.use(VeeValidate);
 
 new Vue({
   router,
