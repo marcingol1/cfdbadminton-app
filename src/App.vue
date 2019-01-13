@@ -3,7 +3,7 @@
     <LogIn v-if="!isLoggedIn"/>
     <v-app id="vuetify-app">
       <div v-if="isLoggedIn" class="logged-in">
-        <button>Log out</button>
+        <button @click="logOutAction">Log out</button>
         <div id="nav">
           <router-link to="/">Home</router-link>|
           <router-link to="/about">About</router-link>|
@@ -19,7 +19,7 @@
 <script lang="ts">
 import Vue from "vue";
 import LogIn from "@/auth/components/log-in.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
   components: {
@@ -27,6 +27,9 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters(["isLoggedIn"])
+  },
+  methods: {
+    ...mapActions(["logOutAction"])
   }
 });
 </script>

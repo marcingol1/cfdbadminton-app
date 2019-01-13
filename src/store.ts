@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { generateTestServer } from './generating-utils';
 import isLoggedInAction from '@/auth/actions/is-logged-in.action';
 import logInAction from '@/auth/actions/log-in.action';
+import logOutAction from '@/auth/actions/log-out.action';
 
 Vue.use(Vuex);
 
@@ -19,13 +20,8 @@ export default new Vuex.Store({
   },
   mutations: {
     setLoggedIn(state, user) {
-      if (user) {
-        state.auth.isLoggedIn = true;
-        state.auth.user = user;
-      } else {
-        state.auth.isLoggedIn = false;
-        state.auth.user = {};
-      }
+      state.auth.isLoggedIn = !!user;
+      state.auth.user = user;
     },
     addServer(state) {
       state.server.list.push(generateTestServer());
@@ -45,5 +41,6 @@ export default new Vuex.Store({
   actions: {
     isLoggedInAction,
     logInAction,
+    logOutAction,
   },
 });
