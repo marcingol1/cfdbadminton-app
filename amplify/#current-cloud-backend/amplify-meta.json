@@ -11,24 +11,7 @@
 			"StackId": "arn:aws:cloudformation:eu-central-1:268828591568:stack/cfdbadmintonweb-20190108220553/2f85b590-1389-11e9-bd85-0a0ca1a48442"
 		}
 	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/cfdbadmintonweb-20190108220553-deployment/amplify-cfn-templates/hosting/template.json",
-				"logicalId": "hostingS3AndCloudFront"
-			},
-			"lastPushTimeStamp": "2019-01-12T09:59:56.172Z",
-			"output": {
-				"S3BucketSecureURL": "https://cfdbadminton.s3.amazonaws.com",
-				"WebsiteURL": "http://cfdbadminton.s3-website.eu-central-1.amazonaws.com",
-				"Region": "eu-central-1",
-				"HostingBucketName": "cfdbadminton"
-			},
-			"lastPushDirHash": "+64qp2p3++tI9EdwjsW7cNP8+Zw="
-		}
-	},
+	"hosting": {},
 	"api": {
 		"cfdbadmintonweb": {
 			"service": "AppSync",

@@ -2,9 +2,6 @@
 
 const awsmobile =  {
     "aws_project_region": "eu-central-1",
-    "aws_content_delivery_bucket": "cfdbadminton",
-    "aws_content_delivery_bucket_region": "eu-central-1",
-    "aws_content_delivery_url": "http://cfdbadminton.s3-website.eu-central-1.amazonaws.com",
     "aws_appsync_graphqlEndpoint": "https://nfgxtncwivenfdw3m66rfxleay.appsync-api.eu-central-1.amazonaws.com/graphql",
     "aws_appsync_region": "eu-central-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",

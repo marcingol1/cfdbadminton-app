@@ -78,13 +78,6 @@
 				}
 			}
 		},
-		"hostingS3AndCloudFront": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/cfdbadmintonweb-20190108220553-deployment/amplify-cfn-templates/hosting/template.json",
-				"Parameters": {}
-			}
-		},
 		"authcognito4bb74e6a": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {

@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     auth: {
-      isLoggedIn: false,
+      isLoggedIn: true,
       user: {},
     },
     isLoading: false,
