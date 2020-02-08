@@ -1,4 +1,4 @@
-rootProject.name = 'cookbook'
+rootProject.name = 'cfdbadminton'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()
